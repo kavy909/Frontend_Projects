@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign In | ShopEase</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <style>
+    body { background-color: #f0f2f5; }
+    .signin-box {
+      max-width: 400px;
+      margin: 60px auto;
+      padding: 30px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .error { color: red; font-size: 0.9em; }
+    button{
+      display: block;
+      margin: 20px auto;
+      width: 340px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="signin-box">
+    <h2 class="text-center mb-4">Welcome Back</h2>
+    <form id="signinForm" novalidate>
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" class="form-control" id="email" required>
+        <div class="error" id="emailError"></div>
+      </div>
+      <div class="form-group">
+        <label for="password">Your Password</label>
+        <input type="password" class="form-control" id="password" required>
+        <div class="error" id="passwordError"></div>
+      </div>
+      <button type="submit" class="btn btn-success btn-block">Sign In</button>
+      <p class="text-center mt-3">New to Luxe Thread? <a href="signup.html">Create an account</a></p>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('signinForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      let valid = true;
+
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      document.getElementById('emailError').textContent = '';
+      document.getElementById('passwordError').textContent = '';
+
+      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (!emailPattern.test(email)) {
+        document.getElementById('emailError').textContent = 'Enter a valid email.';
+        valid = false;
+      }
+
+      if (password.length < 6) {
+        document.getElementById('passwordError').textContent = 'Password must be at least 6 characters.';
+        valid = false;
+      }
+
+      if (valid) {
+        alert('Sign In Successful!');
+        this.reset();
+      }
+    });
+  </script>
+
+</body>
+</html>
